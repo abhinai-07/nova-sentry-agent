@@ -1,0 +1,13 @@
+# Terraform local state
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Credentials & environment
+*.tfvars
+.env
+
+# Python artifacts
+__pycache__/
+*.zip
