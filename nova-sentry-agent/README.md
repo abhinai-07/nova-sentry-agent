@@ -42,7 +42,7 @@
 ### Deployment
 1. **Clone the repo:**
    ```bash
-   git clone [https://github.com/abhinai-07/nova-sentry-agent.git](https://github.com/abhinai-07/nova-sentry-agent.git)
+   git clone https://github.com/abhinai-07/nova-sentry-agent.git
    cd nova-sentry-agent
 2. **Initialize Terraform:
    ```bash
