@@ -1,4 +1,4 @@
-NovaSentry Agent: Autonomous Compliance & Secure AI-Ops
+NovaSentry Agent: ![NovaSentry Agent Architecture](./NovaSentry%20Agent.png)Autonomous Compliance & Secure AI-Ops
 NovaSentry Agent is a cloud-native, autonomous compliance agent built for the Amazon Nova AI Hackathon. It bridges the gap between high-speed AI processing and stringent data security by using agentic reasoning to categorize documents while enforcing a "Zero Trust" PII (Personally Identifiable Information) filtering layer.
 
 🚀 Core Pillars
@@ -50,7 +50,7 @@ Clone the repo:
 
 Bash
 
-git clone https://github.com/your-username/NovaSentry-Agent.git
+git clone https://github.com/abhinai-07/nova-sentry-agent.git
 cd NovaSentry-Agent
 Initialize Terraform:
 
