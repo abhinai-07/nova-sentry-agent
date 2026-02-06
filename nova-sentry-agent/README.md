@@ -1,7 +1,7 @@
 # NovaSentry Agent: Autonomous Compliance & Secure AI-Ops
 
-![NovaSentry Agent Architecture](./<img width="4675" height="3698" alt="image" src="https://github.com/user-attachments/assets/b35f6ab4-825c-4c0c-a9f2-ed9a7c5ce8f8" />
-)
+NovaSentry Agent Architecture <img width="4675" height="3698" alt="image" src="https://github.com/user-attachments/assets/b35f6ab4-825c-4c0c-a9f2-ed9a7c5ce8f8" />
+
 
 **NovaSentry Agent** is a cloud-native, autonomous compliance agent built for the Amazon Nova AI Hackathon. It bridges the gap between high-speed AI processing and stringent data security by using agentic reasoning to categorize documents while enforcing a "Zero Trust" PII (Personally Identifiable Information) filtering layer.
 
