@@ -1,63 +1,70 @@
-🛡️ NovaSentry Agent: The Sovereign AI Compliance Firewall
-NovaSentry Agent is an autonomous, event-driven governance system built for the Amazon Nova AI Hackathon. It serves as a "Reasoning Firewall," leveraging Amazon Nova 2 Lite to interpret enterprise data while a local regex security gate identifies and blocks PII (Aadhaar, PAN, Email) before processing.
+NovaSentry Agent: Autonomous Compliance & Secure AI-Ops
+NovaSentry Agent is a cloud-native, autonomous compliance agent built for the Amazon Nova AI Hackathon. It bridges the gap between high-speed AI processing and stringent data security by using agentic reasoning to categorize documents while enforcing a "Zero Trust" PII (Personally Identifiable Information) filtering layer.
 
-🚀 Key Features
-Agentic Reasoning: Leverages Amazon Nova 2 Lite to autonomously categorize document intent and determine priority.
+🚀 Core Pillars
+1. Security & Compliance (The Shield)
+Zero-Exfiltration PII Filter: A local regex-based pre-processing layer that intercepts and masks sensitive Indian identifiers (Aadhaar, PAN cards) before they ever reach the LLM.
 
-Sovereign Security Gate: Uses a high-performance local regex firewall to block sensitive PII (Aadhaar, PAN, Emails) with zero latency, ensuring data never leaves the environment for scanning.
+Least Privilege Access: IAM roles are scoped strictly to the resources required for document processing.
 
-Serverless Efficiency: Constructed on a fully event-driven architecture with AWS Lambda and Amazon S3.
+2. AI & Agentic Reasoning (The Brain)
+Amazon Nova 2 Lite: Leverages high-performance LLMs to perform intelligent document categorization.
 
-Enterprise-Grade IaC: Managed through automated deployment and resource lifecycle control via Terraform.
+Priority Determination: The agent doesn't just read; it decides the urgency of the data based on its content, simulating a real-world SRE/DevOps ticketing workflow.
 
-🏗️ Architecture
-Orchestration: AWS Lambda (Python 3.11).
+3. Automation & Infrastructure (The Backbone)
+Infrastructure as Code (IaC): 100% of the AWS environment (S3, Lambda, Bedrock configurations) is defined and deployed via Terraform.
 
-AI Engine: Amazon Bedrock (Inference Profile: us.amazon.nova-2-lite-v1:0).
+CI/CD Pipeline: Integrated GitHub Actions to automate testing and deployment, ensuring that every infrastructure change is tracked and validated.
 
-Storage: Amazon S3 (Isolated Input and Output Buckets).
+🛠️ Tech Stack
+Cloud: AWS (S3, Lambda, IAM, Amazon Bedrock)
 
-Infrastructure: Terraform for repeatable, multi-environment deployments.
+AI Model: Amazon Nova 2 Lite
 
-🛠️ Installation & Deployment
+DevOps: Terraform, GitHub Actions
+
+Language: Python 3.x
+
+Security: Regex-based PII Masking
+
+📐 Architecture
+Ingestion: Documents are uploaded to an S3 bucket.
+
+Security Gate: A Lambda function triggers, running a PII scan. If sensitive data is found, it is redacted.
+
+Intelligence: The "clean" text is sent to Amazon Nova. The model categorizes the file (e.g., Technical, Legal, Urgent).
+
+Action: Results are stored in a processed S3 bucket with metadata tags for easy searching.
+
+🏁 Getting Started
 Prerequisites
-AWS CLI configured for the us-east-1 region.
+AWS CLI configured with appropriate permissions.
 
-Terraform installed on your local machine.
+Terraform installed.
 
-Amazon Nova 2 Lite enabled within the Amazon Bedrock Console.
+Python 3.9+ for local testing.
 
-Steps
+Deployment
+Clone the repo:
+
 Bash
 
-# 1. Clone the repository
-
-git clone https://github.com/YOUR_USERNAME/NovaSentry-Agent.git
+git clone https://github.com/your-username/NovaSentry-Agent.git
 cd NovaSentry-Agent
-
-# 2. Initialize Terraform
-
-terraform init
-
-# 3. Deploy Infrastructure
-
-terraform apply -auto-approve
-🧹 Cleanup & Cost Management
-To avoid ongoing AWS charges after the hackathon evaluation, use the following commands to remove the infrastructure.
+Initialize Terraform:
 
 Bash
 
-# 1. Empty S3 Buckets (required before deletion)
+cd terraform/
+terraform init
+terraform apply -auto-approve
+📈 Future Roadmap
+Integrate Amazon DynamoDB for real-time compliance logging.
 
-aws s3 rm s3://YOUR_INPUT_BUCKET_NAME --recursive
-aws s3 rm s3://YOUR_OUTPUT_BUCKET_NAME --recursive
+Add Support for multi-lingual PII detection.
 
-# 2. Destroy Infrastructure
+Dashboard visualization using Amazon QuickSight.
 
-terraform destroy -auto-approve
-📈 Challenges & Learnings
-Cross-Region Inference: Successfully implemented Inference Profiles (us.) to manage on-demand throughput for the Nova model family.
-
-Recursive Prevention: Engineered a one-way S3 pipeline to prevent infinite Lambda invocation loops.
-
-Local Security Pivoting: Shifted from cloud-based PII detection to local regex to ensure lower latency and higher data privacy.
+🛡️ License
+Distributed under the MIT License. See LICENSE for more information.
