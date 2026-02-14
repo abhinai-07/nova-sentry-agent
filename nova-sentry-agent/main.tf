@@ -46,7 +46,26 @@ resource "aws_iam_role_policy" "nova_policy" {
     ]
   })
 }
+# 1. Give S3 permission to invoke your Lambda
+resource "aws_lambda_permission" "allow_s3" {
+  statement_id  = "AllowS3Invoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.nova_agent.function_name
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.input.arn
+}
 
+# 2. Create the actual trigger (Notification)
+resource "aws_s3_bucket_notification" "bucket_notification" {
+  bucket = aws_s3_bucket.input.id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.nova_agent.arn
+    events              = ["s3:ObjectCreated:*"]
+  }
+
+  depends_on = [aws_lambda_permission.allow_s3]
+}
 # Lambda Function
 resource "aws_lambda_function" "nova_agent" {
   filename      = "lambda_function.zip"
